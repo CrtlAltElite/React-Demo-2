@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import {Routes, Route} from 'react-router-dom'
+import HomePage from './components/HomePage'
+import Names from './components/Names'
+import Nav from './components/Nav'
+import {useState} from 'react'
+import AddMovie from './components/AddMovie'
+import ShowMovie from './components/ShowMovie'
 
 function App() {
+  const [people, setPeople] = useState([])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Nav/>
+      <Routes>
+        <Route path="/" element={<HomePage setPeople={setPeople} people={people}/>}/>
+        <Route path="/showNames" element={<Names people={people}/>}/>
+
+        <Route path="/addMovie" element={<AddMovie/>}/>
+        <Route path="/showMovie" element={<ShowMovie/>}/>
+
+
+      </Routes>
     </div>
   );
 }
